@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คอร์ส Psychology of Leadership</title>
+<meta name="description" content="คอร์สภาวะผู้นำสำหรับทีม ดูคลิปเย็นละ 1 ตอน 12 วัน พร้อมการบ้าน short note">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1d2433; --muted:#5d6577; --line:#e3ded3;
+  --accent:#1f4e79; --accent-soft:#e6eef7; --gold:#b8892b; --gold-soft:#f7efdc;
+  --done:#9aa1ad;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161f; --card:#1b212d; --ink:#e8ebf1; --muted:#a3aab8; --line:#2b3342;
+    --accent:#7fb0e0; --accent-soft:#1f2c3d; --gold:#e0b45a; --gold-soft:#2e2718; --done:#687082;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161f; --card:#1b212d; --ink:#e8ebf1; --muted:#a3aab8; --line:#2b3342;
+  --accent:#7fb0e0; --accent-soft:#1f2c3d; --gold:#e0b45a; --gold-soft:#2e2718; --done:#687082;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Sarabun",system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 64px}
+header{padding:36px 0 20px}
+.eyebrow{color:var(--gold);font-weight:700;letter-spacing:.04em;font-size:14px;text-transform:uppercase}
+h1{font-size:30px;line-height:1.25;margin:6px 0 10px}
+.lead{color:var(--muted);margin:0 0 18px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:0 0 8px;padding:0;list-style:none}
+.rules li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px}
+.rules b{display:block;color:var(--accent);font-size:13px;margin-bottom:2px}
+.today-bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:18px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.today-bar span{font-weight:600;font-size:15px}
+.btn{appearance:none;border:1px solid var(--accent);background:var(--accent);color:var(--card);font:inherit;font-size:15px;font-weight:600;border-radius:999px;padding:7px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--accent)}
+.module{margin:28px 0 10px;color:var(--muted);font-size:14px;font-weight:700;letter-spacing:.03em}
+.day{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 14px;scroll-margin-top:70px}
+.day.today{border:2px solid var(--gold);box-shadow:0 4px 18px rgba(184,137,43,.15)}
+.day.past .num{background:var(--line);color:var(--muted)}
+.top{display:flex;gap:12px;align-items:flex-start}
+.num{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:20px}
+.day.today .num{background:var(--gold);color:#fff}
+.meta{font-size:14px;color:var(--muted)}
+.badge{display:inline-block;background:var(--gold-soft);color:var(--gold);font-weight:700;font-size:12px;border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px}
+h2{font-size:19px;line-height:1.35;margin:2px 0 4px}
+h2 a{color:var(--ink);text-decoration:none}
+h2 a:hover{color:var(--accent);text-decoration:underline}
+.extra{font-size:15px;margin:6px 0 0}
+.extra a{color:var(--accent)}
+.q{margin:14px 0 0;background:var(--accent-soft);border-radius:12px;padding:12px 14px}
+.q b{display:block;font-size:13px;color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+section.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:28px 0 14px}
+section.box h3{margin:0 0 8px;font-size:19px}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:inherit;font-size:15px;margin:10px 0}
+.backup{list-style:none;padding:0;margin:0}
+.backup li{padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.backup li:first-child{border-top:0}
+.backup a{color:var(--accent);font-weight:600}
+footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+@media (max-width:480px){h1{font-size:25px}.day{padding:15px}.num{width:40px;height:40px;font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Team Learning · 12 วัน</div>
+    <h1>คอร์ส Psychology of Leadership</h1>
+    <p class="lead">ดูคลิปตอนเย็นวันละ 1 ตอน แล้วส่ง short note ก่อน 09:00 น. วันถัดไป เริ่ม จ. 28 ก.ย. – จบ พ. 14 ต.ค. 2569</p>
+    <ul class="rules">
+      <li><b>ดูเมื่อไร</b>ตอนเย็นวันทำการ ใช้เวลา 15–40 นาที</li>
+      <li><b>ส่งการบ้าน</b>short note 5 ข้อ ในกลุ่มแชตทีม ก่อน 09:00 น.</li>
+      <li><b>ทบทวน</b>ทุกวันศุกร์ 15 นาที เล่าสิ่งที่ลองแล้วได้ผล</li>
+    </ul>
+  </header>
+
+  <div class="today-bar">
+    <span id="todayText">กำลังโหลด…</span>
+    <a class="btn" id="jumpToday" href="#day1">ไปคลิปวันนี้</a>
+  </div>
+
+  <main id="days"></main>
+
+  <section class="box" id="template">
+    <h3>แบบฟอร์ม short note</h3>
+    <p class="meta" style="margin:0">ตอบ 5 ข้อเดิมทุกวัน ยาวไม่เกิน 1 ข้อความในแชต กดปุ่ม "คัดลอกแบบฟอร์ม" ในการ์ดแต่ละวันได้เลย ระบบจะใส่ชื่อคลิปและคำถามให้</p>
+    <pre id="tplPreview"></pre>
+  </section>
+
+  <section class="box" id="backup">
+    <h3>คลิปสำรองและบทความเสริม</h3>
+    <ul class="backup">
+      <li>แทนวันที่ 1–2 · <a href="https://www.youtube.com/watch?v=_n8YzJyiImg" target="_blank" rel="noopener">6 คุณสมบัติผู้นำยุคใหม่ (EP.2256)</a> · Mission To The Moon</li>
+      <li>แทนวันที่ 4 · <a href="https://www.youtube.com/watch?v=akawU_HH6sc" target="_blank" rel="noopener">ผู้นำเก่ง-ไม่โกง วัดยังไง? (อภิวุฒิ พิมลแสงสุริยา)</a> · Money Chat Thailand</li>
+      <li>แทนวันที่ 10 · <a href="https://www.youtube.com/watch?v=CtRrhFj0jac" target="_blank" rel="noopener">ชนะทุกบททดสอบชีวิตด้วย EQ (EP.2501)</a> · Mission To The Moon</li>
+      <li>แทนวันที่ 12 · <a href="https://www.youtube.com/watch?v=3ak0cwL518g" target="_blank" rel="noopener">ข้อคิดจาก Leaders Eat Last (EP.235)</a> · THE LIBRARY</li>
+      <li>อ่านเสริม · <a href="https://www.slingshot.co.th/th/blog/brain-based-leadership-2" target="_blank" rel="noopener">Brain-Based Leadership ตอนจบ</a> · Slingshot</li>
+      <li>อ่านเสริม · <a href="https://www.slingshot.co.th/blog/disaster_of_leadership" target="_blank" rel="noopener">วิธีก้าวข้าม 'หายนะ' แห่ง 'ภาวะผู้นำ'</a> · Slingshot</li>
+    </ul>
+  </section>
+
+  <footer>Mont Étoile · Leadership Learning Program 2569</footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const MODULES = {
+  1:"โมดูล 1 · ผู้นำคือใคร — จากหัวหน้าสู่ผู้นำ",
+  2:"โมดูล 2 · จิตวิทยา สมอง และการตัดสินใจ",
+  3:"โมดูล 3 · สื่อสารโน้มน้าวใจทีม",
+  4:"โมดูล 4 · วางตัวให้ทีมเคารพและยอมรับ",
+  5:"โมดูล 5 · บริหารอารมณ์ในฐานะผู้นำ",
+  6:"โมดูล 6 · Intrinsic Motivation และปิดคอร์ส"
+};
+const DAYS = [
+ {d:"2026-09-28",m:1,t:"ผู้นำไทย มาตรฐานโลก ด้วย I.M.P.A.C.T",u:"https://www.youtube.com/watch?v=2BOKBk0QVAM",c:"Slingshot Group",q:"ข้อไหนใน I.M.P.A.C.T ที่ตัวเองยังอ่อนที่สุด เพราะอะไร"},
+ {d:"2026-09-29",m:1,t:"จาก 'หัวหน้า' สู่ 'ผู้นำ' ด้วยศาสตร์แห่งการสื่อสารและเข้าใจทีม (EP.2294)",u:"https://www.youtube.com/watch?v=fQnYttjO2O8",c:"Mission To The Moon",q:"สัปดาห์นี้เราทำตัวเป็น \"หัวหน้า\" หรือ \"ผู้นำ\" มากกว่า ยกเหตุการณ์จริง 1 เรื่อง"},
+ {d:"2026-09-30",m:2,t:"รู้ทัน \"ความลำเอียง\" ที่มักมาพร้อมการตัดสินใจ (EP.1752)",u:"https://www.youtube.com/watch?v=96oTIEYi6os",c:"Mission To The Moon",x:{t:"อ่านเสริม: Brain-Based Leadership (Slingshot)",u:"https://www.slingshot.co.th/th/blog/brain-based-leadership-1"},q:"การตัดสินใจล่าสุดในงานที่อาจมีอคติแฝงคืออะไร ถ้าย้อนได้จะตัดสินใจต่างไปไหม"},
+ {d:"2026-10-01",m:2,t:"7 ข้อเท็จจริง จากหนังสือ จิตวิทยาสายดาร์ก (EP.680)",u:"https://www.youtube.com/watch?v=brBa43upmZ4",c:"The Secret Sauce",q:"เทคนิคไหนใช้ได้อย่างมีจริยธรรมกับทีม และเทคนิคไหนที่เราไม่ควรใช้"},
+ {d:"2026-10-02",m:3,t:"LeaderChief On Stage ตอน สื่อสารเป็น เล่าเรื่องเก่ง",u:"https://www.youtube.com/watch?v=Kk_XDUIJASw",c:"Slingshot Group",q:"เรื่องที่เราสื่อสารแล้วทีมเข้าใจผิดล่าสุด ผิดตรงไหน"},
+ {d:"2026-10-05",m:3,t:"'บริหารงานด้วย Storytelling' กับ อภิวุฒิ พิมลแสงสุริยา (8half Live EP.60)",u:"https://www.youtube.com/watch?v=bfvXkKcPBac",c:"8 บรรทัดครึ่ง · ผู้พูดคือผู้ก่อตั้ง Slingshot",note:"คลิปยาว ดู 40 นาทีแรกก็พอ",q:"เขียนเรื่องเล่า 5 บรรทัด อธิบายเป้าหมายงานของเราให้ลูกทีมฟัง"},
+ {d:"2026-10-06",m:4,t:"เป็นหัวหน้าที่ใครๆ ก็รักได้ภายใน 90 วัน — The First 90 Days (EP.2569)",u:"https://www.youtube.com/watch?v=PZ-E7IavAas",c:"Mission To The Moon",q:"ถ้าเริ่มบทบาทใหม่พรุ่งนี้ 90 วันแรกจะทำอะไร 3 ข้อ"},
+ {d:"2026-10-07",m:4,t:"ความหวังดีของหัวหน้า ที่ทำร้ายทีมโดยไม่รู้ตัว (EP.2215)",u:"https://www.youtube.com/watch?v=UuZoya_q7Bk",c:"Mission To The Moon",q:"พฤติกรรม \"หวังดี\" ของเราข้อไหนที่อาจทำให้ทีมไม่โต"},
+ {d:"2026-10-08",m:4,t:"ตกผลึกความเป็นผู้นำ กับ เคน นครินทร์ (EP.526)",u:"https://www.youtube.com/watch?v=veNVHVfbVkY",c:"The Secret Sauce",q:"ถ้าทีมไม่ทำตามคำสั่ง เรามักแก้ด้วยอำนาจหรือด้วยความเชื่อใจ"},
+ {d:"2026-10-09",m:5,t:"3 เทคนิคจัดการอารมณ์ (EP.2213)",u:"https://www.youtube.com/watch?v=-ua0N43jPbo",c:"Mission To The Moon",x:{t:"ดูเสริม: EQ คือกุญแจความสำเร็จของผู้นำ (5M EP.2260)",u:"https://www.youtube.com/watch?v=D_l6KCDoPrI"},q:"สถานการณ์ไหนในงานที่ทำให้เราหลุดอารมณ์บ่อยที่สุด จะรับมือครั้งหน้าอย่างไร"},
+ {d:"2026-10-12",m:6,t:"The Motivation-Hygiene Theory ทฤษฎีแรงจูงใจในการทำงาน (EP.1711)",u:"https://www.youtube.com/watch?v=gmLMnusp0Xc",c:"Mission To The Moon",q:"ลูกทีมแต่ละคนมีแรงจูงใจภายในอะไร เราเติมให้ได้อย่างไรโดยไม่ใช้เงิน"},
+ {d:"2026-10-14",m:6,t:"ทำไมผู้นำทุกคนต้องยกระดับภาวะ 'ผู้นำของผู้นำ' (EP.374)",u:"https://www.youtube.com/watch?v=ssQJLM7ArMU",c:"The Secret Sauce",q:"การบ้านใหญ่: แผน 30 วัน — 3 พฤติกรรมที่จะเปลี่ยน วัดผลอย่างไร ใครช่วยเช็ก"}
+];
+const TH_DAY=["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."];
+const TH_MON=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+function fmt(iso){const [y,m,d]=iso.split("-").map(Number);const dt=new Date(y,m-1,d);return `${TH_DAY[dt.getDay()]} ${d} ${TH_MON[m-1]} ${y+543}`;}
+function bkkToday(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Bangkok"}).format(new Date());}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function note(i){const x=DAYS[i];return `วันที่ ${i+1} (${fmt(x.d)}) | ชื่อ ______\nคลิป: ${x.t}\n\n1) 3 ประเด็นสำคัญที่ได้ (สรุปด้วยภาษาตัวเอง)\n   -\n   -\n   -\n2) ประโยค/ไอเดียที่โดนใจที่สุด 1 ข้อ และเหตุผล\n3) คำถามประจำวัน: ${x.q}\n   ตอบ:\n4) สิ่งที่จะลองทำจริงในงานพรุ่งนี้ 1 อย่าง (ทำอะไร กับใคร)\n5) คำถาม/ข้อสงสัยที่อยากคุยในทีม (ถ้ามี)`;}
+
+const today=bkkToday();
+let todayIdx=DAYS.findIndex(x=>x.d>=today);
+const box=document.getElementById("days");
+let lastM=0,html="";
+DAYS.forEach((x,i)=>{
+  if(x.m!==lastM){html+=`<div class="module">${MODULES[x.m]}</div>`;lastM=x.m;}
+  const cls=x.d===today?"today":(x.d<today?"past":"");
+  html+=`<article class="day ${cls}" id="day${i+1}">
+    <div class="top"><div class="num">${i+1}</div><div>
+      <div class="meta">${fmt(x.d)}${x.d===today?'<span class="badge">วันนี้</span>':''}</div>
+      <h2><a href="${x.u}" target="_blank" rel="noopener">${esc(x.t)}</a></h2>
+      <div class="meta">${esc(x.c)}${x.note?' · '+esc(x.note):''}</div>
+      ${x.x?`<p class="extra"><a href="${x.x.u}" target="_blank" rel="noopener">${esc(x.x.t)}</a></p>`:''}
+    </div></div>
+    <div class="q"><b>คำถามการบ้านวันนี้</b>${esc(x.q)}</div>
+    <div class="actions">
+      <a class="btn" href="${x.u}" target="_blank" rel="noopener">▶ ดูคลิป</a>
+      <button class="btn ghost" data-copy-note="${i}">คัดลอกแบบฟอร์ม</button>
+      <button class="btn ghost" data-share="${i}">คัดลอกลิงก์วันนี้</button>
+    </div>
+  </article>`;
+});
+box.innerHTML=html;
+document.getElementById("tplPreview").textContent=note(0).replace(/^วันที่.*\nคลิป:.*\n\n/,"วันที่ __ | ชื่อ ______\nคลิป: ______\n\n").replace(/คำถามประจำวัน: .*/,"คำถามประจำวัน (ดูในการ์ด)");
+
+const tt=document.getElementById("todayText"),jt=document.getElementById("jumpToday");
+if(today<DAYS[0].d){tt.textContent=`เริ่มคอร์ส ${fmt(DAYS[0].d)}`;jt.href="#day1";jt.textContent="ดูวันแรก";}
+else if(todayIdx===-1){tt.textContent="จบคอร์สแล้ว ขอบคุณทุกคน";jt.href="#day12";jt.textContent="ดูวันสุดท้าย";}
+else{const x=DAYS[todayIdx];tt.textContent=x.d===today?`วันนี้: วันที่ ${todayIdx+1}`:`คลิปถัดไป: วันที่ ${todayIdx+1} (${fmt(x.d)})`;jt.href=`#day${todayIdx+1}`;}
+
+const toast=document.getElementById("toast");
+function show(m){toast.textContent=m;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1800);}
+async function copy(t){try{await navigator.clipboard.writeText(t);}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(_){}a.remove();}}
+document.addEventListener("click",async e=>{
+  const n=e.target.closest("[data-copy-note]"),s=e.target.closest("[data-share]");
+  if(n){await copy(note(+n.dataset.copyNote));show("คัดลอกแบบฟอร์มแล้ว วางในแชตได้เลย");}
+  if(s){const i=+s.dataset.share,x=DAYS[i];const url=location.href.split("#")[0]+"#day"+(i+1);
+    await copy(`คอร์สผู้นำ วันที่ ${i+1} (${fmt(x.d)})\n${x.t}\n${url}\nส่ง short note ก่อน 09:00 น. พรุ่งนี้`);show("คัดลอกข้อความ + ลิงก์แล้ว");}
+});
+if(!location.hash&&today>=DAYS[0].d&&todayIdx!==-1){setTimeout(()=>document.getElementById(`day${todayIdx+1}`).scrollIntoView(),150);}
+</script>
+</body>
+</html>
