@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>คอร์ส Psychology of Leadership</title>
-<meta name="description" content="คอร์สภาวะผู้นำสำหรับทีม ดูคลิปเย็นละ 1 ตอน 12 วัน พร้อมการบ้าน short note">
+<meta name="description" content="คอร์สภาวะผู้นำสำหรับทีม ดูคลิปเย็นละ 1 ตอน 12 วัน เขียนโน้ตแล้วนำเสนอวันถัดไป">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
@@ -55,7 +55,12 @@ h2 a:hover{color:var(--accent);text-decoration:underline}
 .extra a{color:var(--accent)}
 .q{margin:14px 0 0;background:var(--accent-soft);border-radius:12px;padding:12px 14px}
 .q b{display:block;font-size:13px;color:var(--accent)}
+.q ol{margin:6px 0 0;padding-left:22px}
+.q li{margin:4px 0}
+.q li.hl{font-weight:600;color:var(--ink)}
+.q .hint{font-size:13px;color:var(--muted);margin:8px 0 0}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.day .q{margin-top:14px}
 section.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:28px 0 14px}
 section.box h3{margin:0 0 8px;font-size:19px}
 pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:inherit;font-size:15px;margin:10px 0}
@@ -74,10 +79,10 @@ footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
   <header>
     <div class="eyebrow">Team Learning · 12 วัน</div>
     <h1>คอร์ส Psychology of Leadership</h1>
-    <p class="lead">ดูคลิปตอนเย็นวันละ 1 ตอน แล้วส่ง short note ก่อน 09:00 น. วันถัดไป เริ่ม จ. 28 ก.ย. – จบ พ. 14 ต.ค. 2569</p>
+    <p class="lead">ดูคลิปตอนเย็นวันละ 1 ตอน เขียนโน้ตด้วยลายมือ แล้วมานำเสนอให้ทีมฟังวันถัดไป เริ่ม จ. 28 ก.ย. – จบ พ. 14 ต.ค. 2569</p>
     <ul class="rules">
       <li><b>ดูเมื่อไร</b>ตอนเย็นวันทำการ ใช้เวลา 15–40 นาที</li>
-      <li><b>ส่งการบ้าน</b>short note 5 ข้อ ในกลุ่มแชตทีม ก่อน 09:00 น.</li>
+      <li><b>การบ้าน</b>เขียนโน้ต 5 ข้อด้วยลายมือ นำเสนอให้ทีมฟังวันถัดไป</li>
       <li><b>ทบทวน</b>ทุกวันศุกร์ 15 นาที เล่าสิ่งที่ลองแล้วได้ผล</li>
     </ul>
   </header>
@@ -90,9 +95,8 @@ footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
   <main id="days"></main>
 
   <section class="box" id="template">
-    <h3>แบบฟอร์ม short note</h3>
-    <p class="meta" style="margin:0">ตอบ 5 ข้อเดิมทุกวัน ยาวไม่เกิน 1 ข้อความในแชต กดปุ่ม "คัดลอกแบบฟอร์ม" ในการ์ดแต่ละวันได้เลย ระบบจะใส่ชื่อคลิปและคำถามให้</p>
-    <pre id="tplPreview"></pre>
+    <h3>วิธีทำการบ้าน</h3>
+    <p style="margin:0">เขียนด้วยลายมือลงสมุดหรือกระดาษ ครึ่งหน้า A4 ก็พอ หัวกระดาษเขียน วันที่ ชื่อ และชื่อคลิป แล้วตอบ 5 ข้อตามการ์ดของวันนั้น วันถัดไปนำโน้ตมานำเสนอให้ทีมฟัง เน้นข้อ 3 และข้อ 4 เก็บสมุดไว้ทั้ง 12 วัน ใช้ทบทวนตอนทำแผน 30 วันในวันสุดท้าย</p>
   </section>
 
   <section class="box" id="backup">
@@ -109,7 +113,6 @@ footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
 
   <footer>Mont Étoile · Leadership Learning Program 2569</footer>
 </div>
-<div class="toast" id="toast"></div>
 
 <script>
 const MODULES = {
@@ -139,7 +142,6 @@ const TH_MON=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","ม�
 function fmt(iso){const [y,m,d]=iso.split("-").map(Number);const dt=new Date(y,m-1,d);return `${TH_DAY[dt.getDay()]} ${d} ${TH_MON[m-1]} ${y+543}`;}
 function bkkToday(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Bangkok"}).format(new Date());}
 function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-function note(i){const x=DAYS[i];return `วันที่ ${i+1} (${fmt(x.d)}) | ชื่อ ______\nคลิป: ${x.t}\n\n1) 3 ประเด็นสำคัญที่ได้ (สรุปด้วยภาษาตัวเอง)\n   -\n   -\n   -\n2) ประโยค/ไอเดียที่โดนใจที่สุด 1 ข้อ และเหตุผล\n3) คำถามประจำวัน: ${x.q}\n   ตอบ:\n4) สิ่งที่จะลองทำจริงในงานพรุ่งนี้ 1 อย่าง (ทำอะไร กับใคร)\n5) คำถาม/ข้อสงสัยที่อยากคุยในทีม (ถ้ามี)`;}
 
 const today=bkkToday();
 let todayIdx=DAYS.findIndex(x=>x.d>=today);
@@ -155,31 +157,28 @@ DAYS.forEach((x,i)=>{
       <div class="meta">${esc(x.c)}${x.note?' · '+esc(x.note):''}</div>
       ${x.x?`<p class="extra"><a href="${x.x.u}" target="_blank" rel="noopener">${esc(x.x.t)}</a></p>`:''}
     </div></div>
-    <div class="q"><b>คำถามการบ้านวันนี้</b>${esc(x.q)}</div>
     <div class="actions">
       <a class="btn" href="${x.u}" target="_blank" rel="noopener">▶ ดูคลิป</a>
-      <button class="btn ghost" data-copy-note="${i}">คัดลอกแบบฟอร์ม</button>
-      <button class="btn ghost" data-share="${i}">คัดลอกลิงก์วันนี้</button>
+    </div>
+    <div class="q"><b>การบ้าน · เขียนด้วยลายมือ ตอบ 5 ข้อ</b>
+      <ol>
+        <li>3 ประเด็นสำคัญที่ได้จากคลิป สรุปด้วยภาษาตัวเอง</li>
+        <li>ประโยคหรือไอเดียที่โดนใจที่สุด 1 ข้อ และเหตุผล</li>
+        <li class="hl">${esc(x.q)}</li>
+        <li>สิ่งที่จะลองทำจริงในงานพรุ่งนี้ 1 อย่าง ทำอะไร กับใคร</li>
+        <li>คำถามหรือข้อสงสัยที่อยากคุยในทีม (ถ้ามี)</li>
+      </ol>
+      <p class="hint">เตรียมนำเสนอจากโน้ตให้ทีมฟังวันถัดไป</p>
     </div>
   </article>`;
 });
 box.innerHTML=html;
-document.getElementById("tplPreview").textContent=note(0).replace(/^วันที่.*\nคลิป:.*\n\n/,"วันที่ __ | ชื่อ ______\nคลิป: ______\n\n").replace(/คำถามประจำวัน: .*/,"คำถามประจำวัน (ดูในการ์ด)");
 
 const tt=document.getElementById("todayText"),jt=document.getElementById("jumpToday");
 if(today<DAYS[0].d){tt.textContent=`เริ่มคอร์ส ${fmt(DAYS[0].d)}`;jt.href="#day1";jt.textContent="ดูวันแรก";}
 else if(todayIdx===-1){tt.textContent="จบคอร์สแล้ว ขอบคุณทุกคน";jt.href="#day12";jt.textContent="ดูวันสุดท้าย";}
 else{const x=DAYS[todayIdx];tt.textContent=x.d===today?`วันนี้: วันที่ ${todayIdx+1}`:`คลิปถัดไป: วันที่ ${todayIdx+1} (${fmt(x.d)})`;jt.href=`#day${todayIdx+1}`;}
 
-const toast=document.getElementById("toast");
-function show(m){toast.textContent=m;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1800);}
-async function copy(t){try{await navigator.clipboard.writeText(t);}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(_){}a.remove();}}
-document.addEventListener("click",async e=>{
-  const n=e.target.closest("[data-copy-note]"),s=e.target.closest("[data-share]");
-  if(n){await copy(note(+n.dataset.copyNote));show("คัดลอกแบบฟอร์มแล้ว วางในแชตได้เลย");}
-  if(s){const i=+s.dataset.share,x=DAYS[i];const url=location.href.split("#")[0]+"#day"+(i+1);
-    await copy(`คอร์สผู้นำ วันที่ ${i+1} (${fmt(x.d)})\n${x.t}\n${url}\nส่ง short note ก่อน 09:00 น. พรุ่งนี้`);show("คัดลอกข้อความ + ลิงก์แล้ว");}
-});
 if(!location.hash&&today>=DAYS[0].d&&todayIdx!==-1){setTimeout(()=>document.getElementById(`day${todayIdx+1}`).scrollIntoView(),150);}
 </script>
 </body>
